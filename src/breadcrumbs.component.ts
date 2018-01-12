@@ -8,29 +8,23 @@ import {BreadcrumbsService} from "./breadcrumbs.service";
 @Component({
     selector: "breadcrumb",
     template: `
-        <div [ngClass]="{ 'container-fluid': allowBootstrap, 'fluid-bread': true}">
-            <div class="container">
-                <ol [ngClass]="{ 'breadcrumb': allowBootstrap}" class="{{addClass ? '' + addClass : ''}}">
-                    <li *ngFor="let breadcrumb of breadcrumbs; let last = last"
-                        [ngClass]="{ 'breadcrumb-item': allowBootstrap, 'list': true, 'active': last }">
-                        <a *ngIf="!last" [routerLink]="hasParams(breadcrumb)">
-                            {{breadcrumb.label}}
-                        </a>
-                        <span *ngIf="last">{{ breadcrumb.label }}</span>
-                    </li>
-                </ol>
-            </div>
-        </div>`,
-    styles: [`
-        .fluid-bread {
-            background-color: white;
-        }
-
-        .breadcrumb {
-            background-color: white;
-            padding: 4px;
-            margin-bottom: 0;
-        }`],
+        <ng-template [ngIf]="containerClass.length" [ngIfElse]="breadcrumb">
+           <div [ngClass]="containerClass">
+             <ng-container *ngTemplateOutlet="breadcrumb"></ng-container>
+           </div>
+        </ng-template>
+        <ng-template #breadcrumb>
+            <ol [ngClass]="{ 'breadcrumb': allowBootstrap}" class="{{addClass ? '' + addClass : ''}}">
+                <li *ngFor="let breadcrumb of breadcrumbs; let last = last"
+                    [ngClass]="{ 'breadcrumb-item': allowBootstrap, 'list': true, 'active': last }">
+                    <a *ngIf="!last" [routerLink]="hasParams(breadcrumb)">
+                        {{breadcrumb.label}}
+                    </a>
+                    <span *ngIf="last">{{ breadcrumb.label }}</span>
+                </li>
+            </ol>
+        </ng-template>`,
+    styles: [],
     encapsulation: ViewEncapsulation.None
 })
 
@@ -43,6 +37,9 @@ export class BreadcrumbComponent implements OnInit {
 
     @Input()
     public allowBootstrap: boolean;
+    
+    @Input()
+    public containerClass: string | string[];
 
     @Input()
     public addClass: string;
