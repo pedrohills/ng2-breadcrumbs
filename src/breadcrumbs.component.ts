@@ -29,7 +29,7 @@ import {BreadcrumbsService} from "./breadcrumbs.service";
 })
 
 export class BreadcrumbComponent implements OnInit {
-
+    
     // The breadcrumbs of the current route
     private currentBreadcrumbs: IBreadcrumb[];
     // All the breadcrumbs
@@ -39,7 +39,9 @@ export class BreadcrumbComponent implements OnInit {
     public allowBootstrap: boolean;
     
     @Input()
-    public containerClass: string | string[] = 'container-fluid';
+    set containerClass(containerClass: string | string[]) {
+        this.containerClass = containerClass || 'container-fluid';
+    }
 
     @Input()
     public addClass: string;
