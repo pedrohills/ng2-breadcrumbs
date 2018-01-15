@@ -12,7 +12,7 @@ ng2-breadrumbs is a module for [Angular 5](https://angular.io/) that generates a
 1.Install `ng2-breadcrumbs` via npm:
 
 ```bash
-npm install --save ng2-breadcrumbs
+npm install --save https://github.com/pedrohills/ng2-breadcrumbs.git
 ```
 
 2.Import the `BreadcrumbsModule` within your app:
@@ -55,6 +55,7 @@ export const ROUTES: Routes = [
 <breadcrumb [allowBootstrap]="true"></breadcrumb>
 <router-outlet></router-outlet>
 ```
+You can add [containerClass] equals to any string or array like container or container-fluid for bootstrap purposes.
 
 5. Then your `StoresModule`'s routes will look like this:
 
@@ -133,5 +134,3 @@ The `BreadcrumbsService`'s `store' and `storePrefixed` methods breadcrumb object
 
 # TODO
  1. Add more use cases (using routerLinks, for example).
-
- 
