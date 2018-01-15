@@ -43,6 +43,8 @@ export class BreadcrumbComponent implements OnInit {
         this.containerClass = containerClass || 'container-fluid';
     }
 
+    get containerClass(): string | string[] { return this.containerClass; }
+
     @Input()
     public addClass: string;
 
