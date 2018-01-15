@@ -8,7 +8,7 @@ import {BreadcrumbsService} from "./breadcrumbs.service";
 @Component({
     selector: "breadcrumb",
     template: `
-        <ng-template [ngIf]="containerClass" [ngIfElse]="breadcrumb">
+        <ng-template [ngIf]="containerClass.length" [ngIfElse]="breadcrumb">
            <div [ngClass]="containerClass">
              <ng-container *ngTemplateOutlet="breadcrumb"></ng-container>
            </div>
@@ -29,7 +29,7 @@ import {BreadcrumbsService} from "./breadcrumbs.service";
 })
 
 export class BreadcrumbComponent implements OnInit {
-    
+
     // The breadcrumbs of the current route
     private currentBreadcrumbs: IBreadcrumb[];
     // All the breadcrumbs
@@ -37,9 +37,9 @@ export class BreadcrumbComponent implements OnInit {
 
     @Input()
     public allowBootstrap: boolean;
-
+    
     @Input()
-    public containerClass: string | string[];
+    public containerClass: string | string[] = '';
 
     @Input()
     public addClass: string;
