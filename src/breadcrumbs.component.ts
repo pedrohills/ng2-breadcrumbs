@@ -8,7 +8,7 @@ import {BreadcrumbsService} from "./breadcrumbs.service";
 @Component({
     selector: "breadcrumb",
     template: `
-        <ng-template [ngIf]="containerClass.length" [ngIfElse]="breadcrumb">
+        <ng-template [ngIf]="containerClass" [ngIfElse]="breadcrumb">
            <div [ngClass]="containerClass">
              <ng-container *ngTemplateOutlet="breadcrumb"></ng-container>
            </div>
@@ -37,13 +37,9 @@ export class BreadcrumbComponent implements OnInit {
 
     @Input()
     public allowBootstrap: boolean;
-    
-    @Input()
-    set containerClass(containerClass: string | string[]) {
-        this.containerClass = containerClass || 'container-fluid';
-    }
 
-    get containerClass(): string | string[] { return this.containerClass; }
+    @Input()
+    public containerClass: string | string[];
 
     @Input()
     public addClass: string;
