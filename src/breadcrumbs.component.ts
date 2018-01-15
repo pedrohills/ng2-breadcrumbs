@@ -39,7 +39,7 @@ export class BreadcrumbComponent implements OnInit {
     public allowBootstrap: boolean;
     
     @Input()
-    public containerClass: string | string[] = '';
+    public containerClass: string | string[] = 'container-fluid';
 
     @Input()
     public addClass: string;
